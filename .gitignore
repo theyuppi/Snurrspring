@@ -25,3 +25,8 @@ ExportedObj/
 .vscode/
 .vs/VSWorkspaceState.json
 .vs/slnx.sqlite
+
+# more crap
+/Snurrspring/.vscode/*
+/Snurrspring/.vs/*
+
