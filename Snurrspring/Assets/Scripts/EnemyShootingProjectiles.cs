@@ -22,7 +22,7 @@ public class EnemyShootingProjectiles : MonoBehaviour
             var direction = Random.insideUnitCircle.normalized;
             GameObject go = GameObject.Instantiate(projectiles[rngNumber], this.transform.position, this.transform.rotation);
             go.GetComponent<Projectile>().dir = direction;
-
+            go.GetComponent<Projectile>().GetComponent<SpriteRenderer>().sortingOrder = this.GetComponent<SpriteRenderer>().sortingOrder + 1;
             GameObject.Destroy(go, 5.0f);
         }
     }
