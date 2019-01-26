@@ -108,6 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9b177359972004aab9f9019ea72eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 0.01
+  jumpPower: 10
   isGrounded: 1
-  gravity: -10
+  gravity: -30
