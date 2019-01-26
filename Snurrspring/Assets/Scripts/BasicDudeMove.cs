@@ -23,6 +23,11 @@ public class BasicDudeMove : MonoBehaviour
         while (t > 1)
         {
             p = (p + 1) % path.pointList.Count;
+
+            if(this.player.isGrounded)
+            {
+                path.Visit(p);
+            }
             t -= 1;
         }
 
