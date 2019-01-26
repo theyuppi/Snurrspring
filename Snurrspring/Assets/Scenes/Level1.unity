@@ -428,6 +428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 589590865}
   - component: {fileID: 589590864}
+  - component: {fileID: 589590866}
   m_Layer: 0
   m_Name: Cloud_BottomRight
   m_TagString: Cloud
@@ -497,6 +498,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &589590866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589590863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f626ca4a167d81418b20ce5c1c48db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &606509347
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,6 +756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1019253565}
   - component: {fileID: 1019253564}
+  - component: {fileID: 1019253566}
   m_Layer: 0
   m_Name: Cloud_Top
   m_TagString: Cloud
@@ -812,6 +826,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1019253566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019253563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f626ca4a167d81418b20ce5c1c48db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1232142510
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +848,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1232142512}
   - component: {fileID: 1232142511}
+  - component: {fileID: 1232142513}
   m_Layer: 0
   m_Name: Cloud_TopRight
   m_TagString: Cloud
@@ -891,6 +918,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1232142513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232142510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f626ca4a167d81418b20ce5c1c48db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1232461399
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,6 +1019,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1349921141}
   - component: {fileID: 1349921140}
+  - component: {fileID: 1349921142}
   m_Layer: 0
   m_Name: Cloud_TopMiddle
   m_TagString: Cloud
@@ -1049,6 +1089,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1349921142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349921139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f626ca4a167d81418b20ce5c1c48db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1489044032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,6 +1190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1515390627}
   - component: {fileID: 1515390626}
+  - component: {fileID: 1515390628}
   m_Layer: 0
   m_Name: Cloud_BottomMiddle
   m_TagString: Cloud
@@ -1207,6 +1260,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1515390628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515390625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f626ca4a167d81418b20ce5c1c48db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1599586866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,6 +1601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2112407293}
   - component: {fileID: 2112407292}
+  - component: {fileID: 2112407294}
   m_Layer: 0
   m_Name: Cloud_BottomLeft
   m_TagString: Cloud
@@ -1605,6 +1671,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2112407294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112407291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f626ca4a167d81418b20ce5c1c48db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2128091488
 GameObject:
   m_ObjectHideFlags: 0
