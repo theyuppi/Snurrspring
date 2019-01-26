@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5127171743244605010}
   - component: {fileID: 5127171743244605013}
   - component: {fileID: 5127171743244605011}
+  - component: {fileID: 8219710609373910134}
   m_Layer: 0
   m_Name: Dude
   m_TagString: Player
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 0}
   speed: 10
+  degreesDelta: 10
 --- !u!212 &5127171743244605011
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,3 +96,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8219710609373910134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5127171743244605012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f9b177359972004aab9f9019ea72eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpPower: 0.01
+  isGrounded: 1
+  gravity: -10
