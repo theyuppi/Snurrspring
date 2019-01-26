@@ -98,8 +98,6 @@ public class PathCreator : MonoBehaviour
 
             if(next.line == null && prev.line == null)
             {
-                Debug.Log("Marked first");
-
                 me.line = new DrawLine(me.vec2)
                 {
                     line = New()
@@ -111,7 +109,6 @@ public class PathCreator : MonoBehaviour
             {
                 if(next.line != prev.line)
                 {
-                    Debug.Log("joing prev & next");
                     prev.line.points.Add(me.vec2);
                     prev.line.points.AddRange(next.line.points);
 
@@ -123,7 +120,6 @@ public class PathCreator : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Whole world filled");
                     next.line.line.loop = true;
                     me.line = next.line;
                 }
@@ -134,12 +130,9 @@ public class PathCreator : MonoBehaviour
                 me.line = prev.line;
 
                 prev.line.UpdateLine();
-
-                Debug.Log("Adding to prev");
             }
             else
             {
-                Debug.Log("Adding to next");
                 me.line = new DrawLine(me.vec2);
                 me.line.points.AddRange(next.line.points);
                 me.line = prev.line;
