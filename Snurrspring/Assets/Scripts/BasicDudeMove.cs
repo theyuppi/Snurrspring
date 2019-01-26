@@ -23,6 +23,27 @@ public class BasicDudeMove : MonoBehaviour
         }
     }
 
+    public float PercentageComplete
+    {
+        get
+        {
+            return path.percentComplete;
+        }
+    }
+
+    public float TotalPercentageComplete
+    {
+        get
+        {
+            float sum = 0;
+            foreach(var pa in allPaths)
+            {
+                sum += pa.percentComplete;
+            }
+            return sum / allPaths.Length;
+        }
+    }
+
     void Update()
     {
         t += Time.deltaTime * speed;
@@ -36,6 +57,8 @@ public class BasicDudeMove : MonoBehaviour
                 path.Visit(p);
             }
             t -= 1;
+
+            // Debug.Log(string.Format("Percentage complete: {0}/{1}", PercentageComplete * 100, TotalPercentageComplete * 100));
         }
 
         var pos =  Vector2.Lerp(path.pointList[p].vec2, path.pointList[(p+1) % path.pointList.Count].vec2, t);

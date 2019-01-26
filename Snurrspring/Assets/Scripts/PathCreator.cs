@@ -104,12 +104,20 @@ public class PathCreator : MonoBehaviour
         return r;
     }
 
+    public float percentComplete = 0;
+    private int visited = 0;
+
     public void Visit(int p)
     {
         var me = this.pointList[p];
         if (!me.visited)
         {
             me.visited = true;
+
+            visited += 1;
+
+            percentComplete = visited / (float)(this.pointList.Count);
+            // Debug.Log(string.Format("Percentage complete: {0}", percentComplete * 100));
 
             if(this.CompletionStyle == null)
             {
