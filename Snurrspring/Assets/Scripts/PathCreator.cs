@@ -72,9 +72,18 @@ public class PathCreator : MonoBehaviour
         return r;
     }
 
-    private void Remove(LineRenderer r)
+    private void Replace(DrawLine older, DrawLine newer)
     {
-        Destroy(r.gameObject);
+        Destroy(older.line.gameObject);
+
+        // todo: optimize this!
+        foreach(var node in this.pointList)
+        {
+            if(node.line == older)
+            {
+                node.line = newer;
+            }
+        }
     }
 
     public void Visit(int p)
@@ -86,58 +95,55 @@ public class PathCreator : MonoBehaviour
 
             var next = this.pointList[(p + 1) % this.pointList.Count];
             var prev = this.pointList[(p + this.pointList.Count - 1) % this.pointList.Count];
+
             if(next.line == null && prev.line == null)
             {
                 Debug.Log("Marked first");
-                me.line = New();
-                me.points = new List<Vector3>() { me.vec2 };
 
-                me.line.positionCount = me.points.Count;
-                me.line.SetPositions(me.points.ToArray());
+                me.line = new DrawLine(me.vec2)
+                {
+                    line = New()
+                };
+
+                me.line.UpdateLine();
             }
             else if(next.line != null && prev.line != null)
             {
                 if(next.line != prev.line)
                 {
                     Debug.Log("joing prev & next");
-                    Remove(next.line);
-                    prev.points.Add(me.vec2);
-                    prev.points.AddRange(next.points);
+                    prev.line.points.Add(me.vec2);
+                    prev.line.points.AddRange(next.line.points);
 
-                    prev.line.positionCount = prev.points.Count;
-                    prev.line.SetPositions(prev.points.ToArray());
+                    prev.line.UpdateLine();
 
                     // todo: joining lines is crap because we only change the next node, we need to change all the nodes containing the next
                     me.line = prev.line;
-                    me.points = prev.points;
-                    next.line = prev.line;
-                    next.points = prev.points;
+                    Replace(next.line, prev.line);
                 }
                 else
                 {
                     Debug.Log("Whole world filled");
+                    next.line.line.loop = true;
+                    me.line = next.line;
                 }
             }
             else if(prev.line != null)
             {
-                prev.points.Add(me.vec2);
-                me.points = prev.points;
+                prev.line.points.Add(me.vec2);
                 me.line = prev.line;
 
-                prev.line.positionCount = prev.points.Count;
-                prev.line.SetPositions(prev.points.ToArray());
+                prev.line.UpdateLine();
 
-                Debug.Log(string.Format("Adding to prev {0}", prev.points.Count));
+                Debug.Log("Adding to prev");
             }
             else
             {
                 Debug.Log("Adding to next");
-                me.points = new List<Vector3>() { me.vec2 };
-                me.points.AddRange(next.points);
+                me.line = new DrawLine(me.vec2);
+                me.line.points.AddRange(next.line.points);
                 me.line = prev.line;
-                prev.points = me.points;
-                me.line.positionCount = me.points.Count;
-                me.line.SetPositions(me.points.ToArray());
+                me.line.UpdateLine();
             }
         }
     }
@@ -156,6 +162,22 @@ public class Node
     public Vector2 normal;
     public bool visited;
 
+    public DrawLine line;
+}
+
+public class DrawLine
+{
     public LineRenderer line;
     public List<Vector3> points;
+
+    public DrawLine(Vector3 p)
+    {
+        points = new List<Vector3>() { p };
+    }
+
+    public void UpdateLine()
+    {
+        line.positionCount = points.Count;
+        line.SetPositions(points.ToArray());
+    }
 }
