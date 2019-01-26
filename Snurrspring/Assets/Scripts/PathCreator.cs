@@ -93,6 +93,11 @@ public class PathCreator : MonoBehaviour
         {
             me.visited = true;
 
+            if(this.CompletionStyle == null)
+            {
+                return;
+            }
+
             var next = this.pointList[(p + 1) % this.pointList.Count];
             var prev = this.pointList[(p + this.pointList.Count - 1) % this.pointList.Count];
 
