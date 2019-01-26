@@ -10,6 +10,7 @@ public class BasicDudeMove : MonoBehaviour
     int p = 0;
     float t = 0;
     public float speed = 10;
+    public float degreesDelta = 10;
 
     void Start()
     {
@@ -29,6 +30,11 @@ public class BasicDudeMove : MonoBehaviour
 
         var pos = points[p];
         this.gameObject.transform.position = (new Vector3(pos.x, pos.y) + player.Offset);
-        this.gameObject.transform.rotation = DudeOrientation.CalcOrientation(pos, points[(p + 1) % points.Length]);
+        if(this.player.isGrounded )
+        {
+            this.gameObject.transform.rotation =
+                Quaternion.RotateTowards(this.gameObject.transform.rotation,
+                    DudeOrientation.CalcOrientation(pos, points[(p + 1) % points.Length]), this.degreesDelta );
+        }
     }
 }

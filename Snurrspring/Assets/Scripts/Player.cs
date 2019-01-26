@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer sb;
     private Vector3 _offset;
 
-    private bool isGrounded = true;
+    public bool isGrounded = true;
 
     public Vector3 Offset
     {
