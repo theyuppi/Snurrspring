@@ -61,11 +61,14 @@ public class PathCreator : MonoBehaviour
 
     public LineRenderer CompletionStyle;
 
+    public float completionSize = 0.1f;
+
     LineRenderer New()
     {
         var r = Instantiate(this.CompletionStyle);
-        r.startWidth = 1;
-        r.endWidth = 1;
+        var w = completionSize;
+        r.startWidth = w;
+        r.endWidth = w;
         return r;
     }
 
