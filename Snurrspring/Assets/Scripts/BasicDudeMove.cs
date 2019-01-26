@@ -28,7 +28,7 @@ public class BasicDudeMove : MonoBehaviour
             t -= 1;
         }
 
-        var pos = points[p];
+        var pos =  Vector2.Lerp(points[p], points[(p+1) % points.Length], t);
         this.gameObject.transform.position = (new Vector3(pos.x, pos.y) + player.Offset);
         if(this.player.isGrounded )
         {
