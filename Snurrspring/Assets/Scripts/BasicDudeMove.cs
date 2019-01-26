@@ -5,6 +5,8 @@ using UnityEngine;
 public class BasicDudeMove : MonoBehaviour
 {
     public PathCreator path;
+    public PathCreator[] allPaths;
+
     private Player player;
     int p = 0;
     float t = 0;
@@ -14,6 +16,11 @@ public class BasicDudeMove : MonoBehaviour
     void Start()
     {
         player = this.GetComponent<Player>();
+
+        if(allPaths == null || allPaths.Length == 0)
+        {
+            allPaths = new PathCreator[] { path };
+        }
     }
 
     void Update()
@@ -32,7 +39,10 @@ public class BasicDudeMove : MonoBehaviour
         }
 
         var pos =  Vector2.Lerp(path.pointList[p].vec2, path.pointList[(p+1) % path.pointList.Count].vec2, t);
-        this.gameObject.transform.position = (new Vector3(pos.x, pos.y) + player.Offset);
+        var playerpos = new Vector3(pos.x, pos.y) + player.Offset;
+        this.gameObject.transform.position = playerpos;
+
+        // if on the ground, rotate to player to stand up straight
         if(this.player.isGrounded )
         {
             var normal = Vector2.Lerp(path.pointList[p].normal,
@@ -43,5 +53,34 @@ public class BasicDudeMove : MonoBehaviour
                 Quaternion.RotateTowards(this.gameObject.transform.rotation,
                     DudeOrientation.CalcOrientation(normal), this.degreesDelta );
         }
+
+        // some time after jumping, start checking for new positions to jump to
+        if(player.timeInJump > timeInJumpBeforeCollisionCheck)
+        {
+            // brute force the best fit
+            ClosestPoint c = null;
+            foreach(var pp in allPaths)
+            {
+                c = ClosestPoint.GetClosest(pp.GetClosestPoint(playerpos), c);
+            }
+
+            if(c != null)
+            {
+                // Debug.Log(string.Format("Closest sq distance is {0}", c.distances));
+                if(c.distances < squaredDistanceCollision)
+                {
+                    // there was a collision
+                    p = c.id;
+                    this.path = c.pc;
+                    t = 0;
+                    player.isGrounded = true;
+                }
+            }
+        }
     }
+
+
+    public float timeInJumpBeforeCollisionCheck = 0.2f;
+    public float squaredDistanceCollision = 0.2f;
+
 }

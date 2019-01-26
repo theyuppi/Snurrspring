@@ -36,13 +36,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    // used to determine when to check closest point
+    public float timeInJump = 0;
+
     IEnumerator Jump(Vector2 jumpDirection)
     {
         float speed = this.jumpPower;
         float height = 0;
-        while (height >= 0)
+        while (height >= 0 && !isGrounded)
         {
             yield return new WaitForEndOfFrame();
+
+            timeInJump += Time.deltaTime;
 
             speed += gravity * Time.deltaTime;
             height += Time.deltaTime * speed;
@@ -50,6 +55,7 @@ public class Player : MonoBehaviour
             _offset = jumpDirection * height;
             yield return new WaitForEndOfFrame();
         }
+        timeInJump = 0;
         _offset = jumpDirection * 0;
         this.isGrounded = true;
     }

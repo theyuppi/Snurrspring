@@ -86,6 +86,24 @@ public class PathCreator : MonoBehaviour
         }
     }
 
+    public ClosestPoint GetClosestPoint(Vector2 p)
+    {
+        var r = new ClosestPoint() { pc=this, id = -1, distances = float.MaxValue };
+
+        for (int i=0; i<this.pointList.Count; i+=1)
+        {
+            var t = this.pointList[i];
+            var d = (t.vec2 - p).sqrMagnitude;
+            if (i==0 || d < r.distances)
+            {
+                r.id = i;
+                r.distances = d;
+            }
+        }
+
+        return r;
+    }
+
     public void Visit(int p)
     {
         var me = this.pointList[p];
@@ -177,5 +195,21 @@ public class DrawLine
     {
         line.positionCount = points.Count;
         line.SetPositions(points.ToArray());
+    }
+}
+
+public class ClosestPoint
+{
+    public PathCreator pc;
+    public int id;
+    public float distances;
+
+    public static ClosestPoint GetClosest(ClosestPoint a, ClosestPoint b)
+    {
+        if(a == null && b == null) { return null;}
+        if(a == null) { return b; }
+        if(b == null) { return a; }
+        if(a.distances > b.distances) { return b;}
+        else { return a; }
     }
 }
