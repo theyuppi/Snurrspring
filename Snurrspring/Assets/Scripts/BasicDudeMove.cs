@@ -6,7 +6,6 @@ public class BasicDudeMove : MonoBehaviour
 {
     public PathCreator path;
     private Player player;
-    Vector2[] points;
     int p = 0;
     float t = 0;
     public float speed = 10;
@@ -15,7 +14,6 @@ public class BasicDudeMove : MonoBehaviour
     void Start()
     {
         player = this.GetComponent<Player>();
-        points = path.path.CalculateEvenlySpacedPoints(0.1f);
     }
 
     void Update()
@@ -24,17 +22,21 @@ public class BasicDudeMove : MonoBehaviour
 
         while (t > 1)
         {
-            p = (p + 1) % points.Length;
+            p = (p + 1) % path.pointList.Count;
             t -= 1;
         }
 
-        var pos =  Vector2.Lerp(points[p], points[(p+1) % points.Length], t);
+        var pos =  Vector2.Lerp(path.pointList[p].vec2, path.pointList[(p+1) % path.pointList.Count].vec2, t);
         this.gameObject.transform.position = (new Vector3(pos.x, pos.y) + player.Offset);
         if(this.player.isGrounded )
         {
+            var normal = Vector2.Lerp(path.pointList[p].normal,
+                path.pointList[(p + 1) % path.pointList.Count].normal, t)
+                    .normalized;
+
             this.gameObject.transform.rotation =
                 Quaternion.RotateTowards(this.gameObject.transform.rotation,
-                    DudeOrientation.CalcOrientation(pos, points[(p + 1) % points.Length]), this.degreesDelta );
+                    DudeOrientation.CalcOrientation(normal), this.degreesDelta );
         }
     }
 }

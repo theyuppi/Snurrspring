@@ -19,7 +19,9 @@ public class PathCreator : MonoBehaviour
 
     [SerializeField]
     private EdgeCollider2D edge;
-    private List<Node> pointList;
+    public List<Node> pointList;
+
+    public bool flipNormals = false;
 
     public void Start()
     {
@@ -33,7 +35,7 @@ public class PathCreator : MonoBehaviour
         for (int i = 0; i < pointList.Count; i++)
         {
             var nextPoint = (i + 1 < pointList.Count ? pointList[i + 1] : pointList[0]);
-            pointList[i].normal = Vector2.Perpendicular(pointList[i].vec2 - nextPoint.vec2);
+            pointList[i].normal = (flipNormals?-1:1) * Vector2.Perpendicular(pointList[i].vec2 - nextPoint.vec2);
         }
     }
 

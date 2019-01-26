@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class DudeOrientation : MonoBehaviour
 {
-    public static Quaternion CalcOrientation(Vector2 from, Vector2 to)
+    public static Quaternion CalcOrientation(Vector2 normal)
     {
-        var d = (to - from).normalized;
-        var p = Vector2.Perpendicular(d);
+        var p = normal;
 
         Vector3 vectorToTarget = p;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
