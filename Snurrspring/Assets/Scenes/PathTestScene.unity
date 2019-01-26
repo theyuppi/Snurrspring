@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 537370719}
   - component: {fileID: 537370718}
+  - component: {fileID: 537370720}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -143,21 +144,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path:
     points:
-    - {x: 0.86500156, y: -1.0724511}
-    - {x: 2.0505242, y: -1.5494622}
-    - {x: 1.3712953, y: 1.4982452}
+    - {x: 0.42009923, y: -1.2028537}
+    - {x: 1.894872, y: -1.2587905}
+    - {x: 1.2287699, y: 1.6482726}
     - {x: 2.4973662, y: 0.89411956}
-    - {x: 3.6396635, y: 0.28128856}
-    - {x: 2.8359911, y: -0.87938917}
+    - {x: 3.6116433, y: 0.23170596}
+    - {x: 2.8353128, y: -0.87835306}
     - {x: 1.7509825, y: -1.588728}
-    - {x: 1.0562408, y: -2.0429246}
-    - {x: 0.51340747, y: -2.1102467}
-    - {x: 0.10299569, y: -1.3887742}
-    - {x: -0.43834448, y: -0.4371394}
-    - {x: -0.07526302, y: 0.87891036}
-    - {x: 0.98714864, y: 0.6144498}
-    - {x: 1.8077652, y: 0.410178}
-    - {x: 0.08046818, y: -0.75678355}
+    - {x: 0.5043361, y: -2.4054406}
+    - {x: -0.23829365, y: -2.3664913}
+    - {x: -1.2086995, y: -1.2353594}
+    - {x: -1.8187695, y: -0.52424496}
+    - {x: -2.0300193, y: 0.32896972}
+    - {x: -1.1453148, y: 0.6374619}
+    - {x: -0.004648447, y: 1.0352068}
+    - {x: -0.7870562, y: -1.1570673}
     isClosed: 1
     autoSetControlPoints: 1
   anchorCol: {r: 1, g: 0, b: 0, a: 1}
@@ -167,6 +168,7 @@ MonoBehaviour:
   anchorDiameter: 0.1
   controlDiameter: 0.075
   displayControlPoints: 0
+  edge: {fileID: 0}
 --- !u!4 &537370719
 Transform:
   m_ObjectHideFlags: 0
@@ -175,12 +177,30 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537370717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6080404, y: -0.36439493, z: 0.07073086}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &537370720
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537370717}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.5, y: 0}
+  - {x: 0.5, y: 0}
 --- !u!1 &1599586866
 GameObject:
   m_ObjectHideFlags: 0

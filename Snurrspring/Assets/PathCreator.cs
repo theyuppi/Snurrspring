@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EdgeCollider2D))]
 public class PathCreator : MonoBehaviour {
 
     [HideInInspector]
@@ -14,6 +15,15 @@ public class PathCreator : MonoBehaviour {
     public float anchorDiameter = .1f;
     public float controlDiameter = .075f;
     public bool displayControlPoints = true;
+
+    public void Start()
+    {
+        this.edge = this.GetComponent<EdgeCollider2D>();
+        edge.points = this.path.CalculateEvenlySpacedPoints(0.1f);
+    }
+
+    [SerializeField]
+    private EdgeCollider2D edge;
 
     public void CreatePath()
     {
