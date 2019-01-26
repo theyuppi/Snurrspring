@@ -4,42 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private bool _isGrounded = true;
-    public bool _jumping = false;
-    public float jumpTime = 2.0f;
-    private float jumpedTime = 0;
-    public float jumpPowah = 0.01f;
+    public float jumpPower = 0.01f;
     private SpriteRenderer sb;
     private Vector3 _offset;
-    [SerializeField]
-    private float _jumpTimeStamp;
 
-    public float JumpTimeStamp
-    {
-        get { return _jumpTimeStamp; }
-    }
-
-    public bool isGrounded
-    {
-        get { return _isGrounded; }
-        set
-        {
-            this._isGrounded = value;
-            if (value)
-                Jumping = false;
-        }
-    }
-
-    public bool Jumping
-    {
-        get { return _jumping; }
-        set
-        {
-            _jumping = value;
-            jumpedTime = 0;
-            _offset = Vector3.zero;
-        }
-    }
+    private bool isGrounded = true;
 
     public Vector3 Offset
     {
@@ -52,45 +21,36 @@ public class Player : MonoBehaviour
         _offset = Vector3.zero;
     }
 
-
+    public float gravity = -10;
 
     private void Update()
     {
         if (Input.anyKeyDown)
         {
-            sb.color = Random.ColorHSV();
-
-            if (isGrounded && !Jumping)
+            if (isGrounded)
             {
-                isGrounded = false;
-                _jumping = true;
-
-                _jumpTimeStamp = Time.time;
+                this.isGrounded = false;
+                sb.color = Random.ColorHSV();
                 StartCoroutine(Jump(this.transform.up));
             }
         }
-        Debug.Log(Offset);
     }
 
     IEnumerator Jump(Vector2 jumpDirection)
     {
-        while (Jumping)
+        float speed = this.jumpPower;
+        float height = 0;
+        while (height >= 0)
         {
-            while (Time.time - _jumpTimeStamp  < jumpTime)
-            {
-                jumpedTime += Time.deltaTime;
-                if (Jumping)
-                _offset += (this.transform.up * jumpPowah);
-                yield return new WaitForEndOfFrame();
-            }
+            yield return new WaitForEndOfFrame();
 
-            jumpedTime += Time.deltaTime;
-            if (Jumping)
-                _offset += (this.transform.up * jumpPowah);
+            speed += gravity * Time.deltaTime;
+            height += Time.deltaTime * speed;
 
-            //if (isGrounded)
-            //    jumping = false;
+            _offset = jumpDirection * height;
+            yield return new WaitForEndOfFrame();
         }
-        yield return new WaitForEndOfFrame();
+        _offset = jumpDirection * 0;
+        this.isGrounded = true;
     }
 }

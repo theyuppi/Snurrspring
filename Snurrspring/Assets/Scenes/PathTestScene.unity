@@ -142,10 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9b177359972004aab9f9019ea72eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumping: 0
-  jumpTime: 2
-  jumpPowah: 0.01
-  offset: {x: 0, y: 0, z: 0}
+  jumpPower: 10
+  gravity: -30
 --- !u!1 &1599586866
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,13 +27,6 @@ public class BasicDudeMove : MonoBehaviour
             t -= 1;
         }
 
-        if (player.isGrounded == false && (Time.time - player.JumpTimeStamp > 0.5f))
-            for (int i = points.Length - 1; i > 0; i--)
-            {
-                if ((points[i] - (Vector2)player.transform.position).magnitude <= 0.5f)
-                    player.isGrounded = true;
-            }
-
         var pos = points[p];
         this.gameObject.transform.position = (new Vector3(pos.x, pos.y) + player.Offset);
         this.gameObject.transform.rotation = DudeOrientation.CalcOrientation(pos, points[(p + 1) % points.Length]);
