@@ -439,6 +439,12 @@ PrefabInstance:
       propertyPath: flipNormals
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4196346310127439083, guid: 72bb9f7d032dfb74d84051110550ec8b,
+        type: 3}
+      propertyPath: CompletionStyle
+      value: 
+      objectReference: {fileID: 2259272075469851777, guid: 52d98506719fc412f931524a1b539550,
+        type: 3}
     - target: {fileID: 4196346310127439082, guid: 72bb9f7d032dfb74d84051110550ec8b,
         type: 3}
       propertyPath: m_LocalPosition.x
