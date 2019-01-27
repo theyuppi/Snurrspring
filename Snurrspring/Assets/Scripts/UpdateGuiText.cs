@@ -26,6 +26,6 @@ public class UpdateGuiText : MonoBehaviour
             GetPlayer();
 
         if (player != null)
-            text.text = string.Format("{0}% complete!", (player.TotalPercentageComplete * 100).ToString("0.##"));
+            text.text = string.Format("{0}% complete!", (player.TotalPercentageComplete * 100).ToString("0.0"));
     }
 }
