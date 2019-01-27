@@ -35,7 +35,7 @@ public class AnyKeyToContinue : MonoBehaviour
     {
         if (doOnce)
         {
-            if (Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
             {
                 FadeManager.Instance.FadeOut(LoadNextScene);
             }
