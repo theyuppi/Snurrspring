@@ -57,7 +57,7 @@ public class BasicDudeMove : MonoBehaviour
                 sum += pa.percentComplete;
             }
             var percentageComplete = sum / allPaths.Length;
-            if (percentageComplete >= 1)
+            if (percentageComplete >= 0.90f)
                 AnyKeyToContinue.Instance.ChangeLevel();
             return percentageComplete;
         }
