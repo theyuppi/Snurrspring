@@ -14,6 +14,15 @@ public class BasicDudeMove : MonoBehaviour
     public float degreesDelta = 10;
 
     bool runPositive = true;
+    public bool flipped = true;
+
+    void SetSpriteOrientation()
+    {
+        foreach(var c in this.gameObject.GetComponentsInChildren<SpriteRenderer>())
+        {
+            c.flipX = runPositive ^ flipped;
+        }
+    }
 
     void Start()
     {
@@ -37,6 +46,8 @@ public class BasicDudeMove : MonoBehaviour
         {
             allPaths = new PathCreator[] { path };
         }
+
+        SetSpriteOrientation();
     }
 
     public float PercentageComplete
@@ -72,6 +83,7 @@ public class BasicDudeMove : MonoBehaviour
             runPositive = !runPositive;
             timeUntilIndexChange = 1 - timeUntilIndexChange;
             player.switchDirectionPlease -= 1;
+            SetSpriteOrientation();
         }
 
         while (timeUntilIndexChange > 1)
