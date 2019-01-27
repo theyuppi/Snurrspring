@@ -19,7 +19,21 @@ public class BasicDudeMove : MonoBehaviour
     {
         player = this.GetComponent<Player>();
 
-        if(allPaths == null || allPaths.Length == 0)
+        if(allPaths != null)
+        {
+            // remove nulls
+            var paths = new List<PathCreator>();
+            foreach(var p in allPaths)
+            {
+                if(p != null)
+                {
+                    paths.Add(p);
+                }
+            }
+            allPaths = paths.ToArray();
+        }
+
+        if (allPaths == null || allPaths.Length == 0)
         {
             allPaths = new PathCreator[] { path };
         }

@@ -164,9 +164,11 @@ public class PathCreator : MonoBehaviour
             }
             else
             {
+                Debug.Assert(next.line != null);
                 me.line = new DrawLine(me.vec2);
                 me.line.points.AddRange(next.line.points);
-                me.line = prev.line;
+                me.line.line = next.line.line;
+                next.line = me.line;
                 me.line.UpdateLine();
             }
         }
