@@ -151,6 +151,7 @@ MonoBehaviour:
   - {fileID: 0}
   speed: 10
   degreesDelta: 10
+  flipped: 1
   timeInJumpBeforeCollisionCheck: 0.2
   squaredDistanceCollision: 0.2
 --- !u!212 &5127171743244605011
@@ -216,4 +217,5 @@ MonoBehaviour:
   jumpPower: 10
   isGrounded: 1
   gravity: -30
+  switchDirectionPlease: 0
   timeInJump: 0

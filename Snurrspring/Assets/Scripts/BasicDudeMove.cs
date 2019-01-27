@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BasicDudeMove : MonoBehaviour
 {
@@ -76,6 +77,10 @@ public class BasicDudeMove : MonoBehaviour
 
     void Update()
     {
+        if (this.GetComponentInChildren<CircleCollider2D>().IsTouchingLayers(LayerMask.GetMask("SakerSomGörOnt")))
+            SceneManager.LoadScene((int)AnyKeyToContinue.Level.GameOver);
+            //AnyKeyToContinue.Instance.ChangeLevel(AnyKeyToContinue.Level.GameOver);
+
         timeUntilIndexChange += Time.deltaTime * speed;
 
         while (player.switchDirectionPlease > 0)
@@ -141,11 +146,21 @@ public class BasicDudeMove : MonoBehaviour
             }
         }
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "SakSomGörOnt")
+            AnyKeyToContinue.Instance.ChangeLevel(AnyKeyToContinue.Level.GameOver);
+    }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "SakSomGörOnt")
+            AnyKeyToContinue.Instance.ChangeLevel(AnyKeyToContinue.Level.GameOver);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "SakSomGörOnt")
             AnyKeyToContinue.Instance.ChangeLevel(AnyKeyToContinue.Level.GameOver);
     }
 
