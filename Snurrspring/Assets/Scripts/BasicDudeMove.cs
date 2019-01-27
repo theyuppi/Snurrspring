@@ -19,13 +19,13 @@ public class BasicDudeMove : MonoBehaviour
     {
         player = this.GetComponent<Player>();
 
-        if(allPaths != null)
+        if (allPaths != null)
         {
             // remove nulls
             var paths = new List<PathCreator>();
-            foreach(var p in allPaths)
+            foreach (var p in allPaths)
             {
-                if(p != null)
+                if (p != null)
                 {
                     paths.Add(p);
                 }
@@ -52,7 +52,7 @@ public class BasicDudeMove : MonoBehaviour
         get
         {
             float sum = 0;
-            foreach(var pa in allPaths)
+            foreach (var pa in allPaths)
             {
                 sum += pa.percentComplete;
             }
@@ -67,7 +67,7 @@ public class BasicDudeMove : MonoBehaviour
     {
         timeUntilIndexChange += Time.deltaTime * speed;
 
-        while(player.switchDirectionPlease > 0)
+        while (player.switchDirectionPlease > 0)
         {
             runPositive = !runPositive;
             timeUntilIndexChange = 1 - timeUntilIndexChange;
@@ -78,7 +78,7 @@ public class BasicDudeMove : MonoBehaviour
         {
             positionIndex = (positionIndex + (runPositive ? 1 : -1) + path.pointList.Count) % path.pointList.Count;
 
-            if(this.player.isGrounded)
+            if (this.player.isGrounded)
             {
                 path.Visit(positionIndex);
             }
@@ -89,12 +89,12 @@ public class BasicDudeMove : MonoBehaviour
 
         var nextIndex = (positionIndex + (runPositive ? 1 : -1) + path.pointList.Count) % path.pointList.Count;
 
-        var pos =  Vector2.Lerp(path.pointList[positionIndex].vec2, path.pointList[nextIndex].vec2, timeUntilIndexChange);
+        var pos = Vector2.Lerp(path.pointList[positionIndex].vec2, path.pointList[nextIndex].vec2, timeUntilIndexChange);
         var playerpos = new Vector3(pos.x, pos.y) + player.Offset;
         this.gameObject.transform.position = playerpos;
 
         // if on the ground, rotate to player to stand up straight
-        if(this.player.isGrounded )
+        if (this.player.isGrounded)
         {
             var normal = Vector2.Lerp(path.pointList[positionIndex].normal,
                 path.pointList[nextIndex].normal, timeUntilIndexChange)
@@ -102,23 +102,23 @@ public class BasicDudeMove : MonoBehaviour
 
             this.gameObject.transform.rotation =
                 Quaternion.RotateTowards(this.gameObject.transform.rotation,
-                    DudeOrientation.CalcOrientation(normal), this.degreesDelta );
+                    DudeOrientation.CalcOrientation(normal), this.degreesDelta);
         }
 
         // some time after jumping, start checking for new positions to jump to
-        if(player.timeInJump > timeInJumpBeforeCollisionCheck)
+        if (player.timeInJump > timeInJumpBeforeCollisionCheck)
         {
             // brute force the best fit
             ClosestPoint c = null;
-            foreach(var pp in allPaths)
+            foreach (var pp in allPaths)
             {
                 c = ClosestPoint.GetClosest(pp.GetClosestPoint(playerpos), c);
             }
 
-            if(c != null)
+            if (c != null)
             {
                 // Debug.Log(string.Format("Closest sq distance is {0}", c.distances));
-                if(c.distances < squaredDistanceCollision)
+                if (c.distances < squaredDistanceCollision)
                 {
                     // there was a collision
                     positionIndex = c.id;
@@ -130,6 +130,12 @@ public class BasicDudeMove : MonoBehaviour
         }
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag == "SakSomGörOnt")
+            AnyKeyToContinue.Instance.ChangeLevel(AnyKeyToContinue.Level.GameOver);
+    }
 
     public float timeInJumpBeforeCollisionCheck = 0.2f;
     public float squaredDistanceCollision = 0.2f;

@@ -7,6 +7,17 @@ public class AnyKeyToContinue : MonoBehaviour
 {
     public static AnyKeyToContinue Instance;
     bool doOnce = true;
+    public enum Level
+    {
+        Introduction,
+        Credits,
+        Level_1,
+        Level_2,
+        Level_3,
+        Win,
+        GameOver
+    }
+    private Level? levelToLoad = null;
 
     void Awake()
     {
@@ -31,16 +42,18 @@ public class AnyKeyToContinue : MonoBehaviour
         }
     }
 
-    public void ChangeLevel(int? id = null)
+    public void ChangeLevel(Level? level = null)
     {
+        levelToLoad = level;
         FadeManager.Instance.FadeOut(LoadNextScene);
     }
 
     void LoadNextScene()
     {
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-        SceneManager.LoadScene(
-            (SceneManager.GetActiveScene().buildIndex + 1 > SceneManager.sceneCountInBuildSettings - 1)
+        SceneManager.LoadScene(levelToLoad.HasValue ? (int)levelToLoad :
+            (SceneManager.GetActiveScene().buildIndex + 1 > 5)
+            //(SceneManager.GetActiveScene().buildIndex + 1 > SceneManager.sceneCountInBuildSettings - 1)
                 ? 0
                 : SceneManager.GetActiveScene().buildIndex + 1
         );
