@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
 
     public float gravity = -10;
 
+    // why is input handled in this class?
+    public int switchDirectionPlease = 0;
+
     private void Update()
     {
         if (Input.anyKeyDown)
@@ -32,6 +35,10 @@ public class Player : MonoBehaviour
                 this.isGrounded = false;
                 sb.color = Random.ColorHSV();
                 StartCoroutine(Jump(this.transform.up));
+            }
+            else
+            {
+                this.switchDirectionPlease += 1;
             }
         }
     }

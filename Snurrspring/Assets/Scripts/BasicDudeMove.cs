@@ -8,10 +8,12 @@ public class BasicDudeMove : MonoBehaviour
     public PathCreator[] allPaths;
 
     private Player player;
-    int p = 0;
-    float t = 0;
+    int positionIndex = 0;
+    float timeUntilIndexChange = 0;
     public float speed = 10;
     public float degreesDelta = 10;
+
+    bool runPositive = true;
 
     void Start()
     {
@@ -49,30 +51,39 @@ public class BasicDudeMove : MonoBehaviour
 
     void Update()
     {
-        t += Time.deltaTime * speed;
+        timeUntilIndexChange += Time.deltaTime * speed;
 
-        while (t > 1)
+        while(player.switchDirectionPlease > 0)
         {
-            p = (p + 1) % path.pointList.Count;
+            runPositive = !runPositive;
+            timeUntilIndexChange = 1 - timeUntilIndexChange;
+            player.switchDirectionPlease -= 1;
+        }
+
+        while (timeUntilIndexChange > 1)
+        {
+            positionIndex = (positionIndex + (runPositive ? 1 : -1) + path.pointList.Count) % path.pointList.Count;
 
             if(this.player.isGrounded)
             {
-                path.Visit(p);
+                path.Visit(positionIndex);
             }
-            t -= 1;
+            timeUntilIndexChange -= 1;
 
             // Debug.Log(string.Format("Percentage complete: {0}/{1}", PercentageComplete * 100, TotalPercentageComplete * 100));
         }
 
-        var pos =  Vector2.Lerp(path.pointList[p].vec2, path.pointList[(p+1) % path.pointList.Count].vec2, t);
+        var nextIndex = (positionIndex + (runPositive ? 1 : -1) + path.pointList.Count) % path.pointList.Count;
+
+        var pos =  Vector2.Lerp(path.pointList[positionIndex].vec2, path.pointList[nextIndex].vec2, timeUntilIndexChange);
         var playerpos = new Vector3(pos.x, pos.y) + player.Offset;
         this.gameObject.transform.position = playerpos;
 
         // if on the ground, rotate to player to stand up straight
         if(this.player.isGrounded )
         {
-            var normal = Vector2.Lerp(path.pointList[p].normal,
-                path.pointList[(p + 1) % path.pointList.Count].normal, t)
+            var normal = Vector2.Lerp(path.pointList[positionIndex].normal,
+                path.pointList[nextIndex].normal, timeUntilIndexChange)
                     .normalized;
 
             this.gameObject.transform.rotation =
@@ -96,9 +107,9 @@ public class BasicDudeMove : MonoBehaviour
                 if(c.distances < squaredDistanceCollision)
                 {
                     // there was a collision
-                    p = c.id;
+                    positionIndex = c.id;
                     this.path = c.pc;
-                    t = 0;
+                    timeUntilIndexChange = 0;
                     player.isGrounded = true;
                 }
             }
