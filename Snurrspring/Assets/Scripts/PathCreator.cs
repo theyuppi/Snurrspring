@@ -116,7 +116,7 @@ public class PathCreator : MonoBehaviour
 
             visited += 1;
 
-            percentComplete = visited / (float)(this.pointList.Count);
+            percentComplete = visited / (float)(this.pointList.Count-1);
             // Debug.Log(string.Format("Percentage complete: {0}", percentComplete * 100));
 
             if(this.CompletionStyle == null)
