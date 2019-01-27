@@ -263,6 +263,16 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1739980112309855894, guid: acc7358e11274c64ea0156c292ee24d2,
+        type: 3}
+      propertyPath: SpawnInterval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1739980112309855894, guid: acc7358e11274c64ea0156c292ee24d2,
+        type: 3}
+      propertyPath: ProjectilesToSpawn
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acc7358e11274c64ea0156c292ee24d2, type: 3}
 --- !u!1 &371716288

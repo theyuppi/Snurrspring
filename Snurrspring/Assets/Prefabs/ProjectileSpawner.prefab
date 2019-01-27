@@ -94,5 +94,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectiles:
   - {fileID: 1466776462632786685, guid: d0746452d7bf12947ac52e0469c80925, type: 3}
-  SpawnInterval: 10
-  ProjectilesToSpawn: 3
+  SpawnInterval: 1
+  ProjectilesToSpawn: 2
