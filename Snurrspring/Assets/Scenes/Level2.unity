@@ -1776,6 +1776,10 @@ PrefabInstance:
       propertyPath: path
       value: 
       objectReference: {fileID: 1740817651}
+    - target: {fileID: 692816030, guid: 11deec46655fe40448cbb44e06687e00, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11deec46655fe40448cbb44e06687e00, type: 3}
 --- !u!1 &2015241969

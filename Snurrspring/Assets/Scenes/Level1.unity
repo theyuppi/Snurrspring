@@ -1491,11 +1491,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5127171743244605013, guid: 11deec46655fe40448cbb44e06687e00,
         type: 3}
-      propertyPath: allPaths.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5127171743244605013, guid: 11deec46655fe40448cbb44e06687e00,
-        type: 3}
       propertyPath: path
       value: 
       objectReference: {fileID: 558130816}
@@ -1509,11 +1504,6 @@ PrefabInstance:
       propertyPath: allPaths.Array.data[1]
       value: 
       objectReference: {fileID: 558130816}
-    - target: {fileID: 5127171743244605011, guid: 11deec46655fe40448cbb44e06687e00,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 999
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11deec46655fe40448cbb44e06687e00, type: 3}
 --- !u!1 &2027427227
